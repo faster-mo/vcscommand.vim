@@ -557,12 +557,12 @@ function! s:EditFile(command, originalBuffer, statusText)
 			else
 				vert rightbelow split
 			endif
+            resize 6
 		endif
 
 		enew
 
 		call s:SetupScratchBuffer(a:command, vcsType, a:originalBuffer, a:statusText)
-
 	finally
 		let s:isEditFileRunning -= 1
 	endtry
@@ -913,6 +913,9 @@ function! s:VCSFinishCommitWithBuffer()
 	if resultBuffer >= 0
 		execute 'bw' currentBuffer
 	endif
+    if resultBuffer > 0 
+        resize 6
+    endif
 	return resultBuffer
 endfunction
 
